@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: ${branch}-server-ident
+  name: ${branch_name}-server-ident
   labels:
-    environment: ${branch}
+    environment: ${pull_request_code}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     app: server
-    environment: ${branch}
+    environment: ${pull_request_code}
   name: server
 spec:
   replicas: 1
@@ -29,4 +29,6 @@ spec:
         command: ["/bin/sh", "-c", "tail -f /dev/null"]
         env:
           - name: ENV
-            value: ${branch}
+            value: ${branch_name}
+          - name: SOURCE
+            value: ${pull_request_repo}
