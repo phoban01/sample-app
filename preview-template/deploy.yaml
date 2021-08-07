@@ -10,7 +10,7 @@ metadata:
     app: server
   name: server
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: server
@@ -21,9 +21,8 @@ spec:
         app: server
     spec:
       containers:
-      - image: busybox
-        name: busybox
-        command: ["/bin/sh", "-c", "tail -f /dev/null"]
+      - image: nginx
+        name: nginx
         env:
         - name: BRANCH
           value: ${branch}
