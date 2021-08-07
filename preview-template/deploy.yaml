@@ -7,18 +7,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: server
-  name: server
+    app: ${branch}-server
+  name: ${branch}-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: server
+      app: ${branch}-server
   strategy: {}
   template:
     metadata:
       labels:
-        app: server
+        app: ${branch}-server
     spec:
       containers:
       - image: nginx
